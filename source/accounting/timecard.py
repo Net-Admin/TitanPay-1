@@ -7,6 +7,18 @@ class TimeCard:
         self.__start_time = start_time
         self.__end_time = end_time
 
+    def setDate(self, date):
+        self.__date = date
+
+    def setStart(self, start_time):
+        self.__start_time = start_time
+
+    def setEnd(self, end_time):
+        self.__end_time = end_time
+
+    def getDate(self):
+        return self.__date
+
     def calculate_daily_pay(self, rate):
         time = self.__endtime - self.__startime
         if time > 8:
