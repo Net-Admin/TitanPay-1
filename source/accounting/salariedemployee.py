@@ -6,17 +6,18 @@ from source.accounting.receipt import Receipt
 from source.accounting.paymentmethod import PaymentMethod
 
 class SalariedEmployee(Employee):
-    def __init__(self, employee_id, first_name, last_name, commission_rate, weekly_dues, method, home):
-        Employee.__init__(self, employee_id, first_name, last_name, weekly_dues, method, home)
+    def __init__(self, employee_id, first_name, last_name, commission_rate, weekly_dues, payMethod):
+        Employee.__init__(self, employee_id, first_name, last_name, weekly_dues, payMethod )
         self.__commission_rate = commission_rate
         self.__receiptList = []
 
     def makeSale(self, date, amount):
         self.__receiptlist.append(Receipt(date, amount))
 
-    def pay(self):
+    def pay(self, startDate, endDate):
         val = 0
         for x in self.__receiptList:
-            val += x.getAmount()
-        payment = self.__commission_rate * val
-        PaymentMethod.pay(payment, self.__method)
+            if (x.getDate() >= startDate and x.getDate() <= endDate):
+                val += x.getAmount()
+        payment = val + self.__commission_rate * val
+        self.__payMethod.pay(payment)
