@@ -1,10 +1,9 @@
 from source.accounting.address import Address
-
+from source.accounting.employee import Employee
 class PaymentMethod:
-    def __init__(self, value, first_name, last_name, homeAddress):
+    def __init__(self, value, person, homeAddress):
         self.__value = value
-        self.__first_name = first_name
-        self.__last_name = last_name
+        self.__person = person
         self.__homeAddress = homeAddress
 
     def pay(self, value):
