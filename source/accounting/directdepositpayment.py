@@ -1,4 +1,7 @@
-class DirectDepositPayment:
+from source.accounting.paymentmethod import PaymentMethod
+class DirectDepositPayment(PaymentMethod):
+    def __init__(self, val, first_name, last_name, homeAddress):
+        PaymentMethod.__init__(self, val, first_name, last_name, homeAddress)
     def pay(self, val):
-        print('$', format(val, ',.2f'), 'is being directly deposited in ', self.__person.get_first_name(), ' ', self.__person.get_last_name(),
-                  "'s account.", sep = '')
+        s = '$' + format(val, ',.2f') + 'is being directly deposited in ' + self.getFirst() + ' ' + self.getLast() + "'s account."
+        return s
