@@ -21,7 +21,7 @@ class MakePayment:
         self.timeCardsList(hEmployees)
         self.recieptList(sEmployees)
         self.__dic = self.makeDic(hEmployees, sEmployees, self.__start_date, self.__end_date)
-        self.makeThePayment()
+        return self.makeThePayment()
 
     def makeThePayment(self):
         s = ''

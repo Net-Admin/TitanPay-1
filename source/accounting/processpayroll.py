@@ -99,8 +99,7 @@ class ProcessPayroll:
                 starter[x] = int(starter[x])
                 ender[x] = int(ender[x])
             payer = MakePayment(starter, ender)
-            payer.pay()
-            s = payer.makeThePayment()
+            s = payer.pay()
             tkinter.messagebox.showinfo('Payroll Processed', s)
 
     def errorMessage(self):
