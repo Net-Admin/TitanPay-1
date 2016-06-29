@@ -1,6 +1,7 @@
 import tkinter
 import tkinter.messagebox
-from source.accounting.makepayment import MakePayment
+from source.accounting import payer
+
 
 class ProcessPayroll:
     def __init__(self):
@@ -30,17 +31,13 @@ class ProcessPayroll:
         self.rb5.pack()
         self.rb6.pack()
 
-        # Buttons
         self.enact_button = tkinter.Button(self.bottom_frame, text="Implement Task", command=self.picker)
 
-        #Pack Buttons
-        self.enact_button.pack(side = 'left')
+        self.enact_button.pack(side='left')
 
-        #Frame Packing
         self.top_frame.pack()
         self.bottom_frame.pack()
 
-        #Start Main Look
         tkinter.mainloop()
 
     def picker(self):
@@ -48,42 +45,34 @@ class ProcessPayroll:
             self.payroll()
 
     def payroll(self):
-        #Main Window
         self.main_window = tkinter.Tk()
 
-        #Frames
         self.top_frame = tkinter.Frame(self.main_window)
         self.middle_frame = tkinter.Frame(self.main_window)
         self.bottom_frame = tkinter.Frame(self.main_window)
 
-        #Set Up time windows
         self.timeLabel = tkinter.Label(self.middle_frame, text='Enter Date in MM/DD/YYYY Format')
         self.startLabel = tkinter.Label(self.middle_frame, text = 'Start Date')
         self.start_entry = tkinter.Entry(self.middle_frame, width=10)
-        self.endLabel = tkinter.Label(self.middle_frame, text = "End Date")
-        self.end_entry = tkinter.Entry(self.middle_frame, width = 10)
+        self.endLabel = tkinter.Label(self.middle_frame, text="End Date")
+        self.end_entry = tkinter.Entry(self.middle_frame, width=10)
 
-        #Pack Time
         self.timeLabel.pack()
-        self.startLabel.pack(side = 'left')
-        self.start_entry.pack(side = 'left')
-        self.endLabel.pack(side = 'left')
-        self.end_entry.pack(side = 'left')
+        self.startLabel.pack(side='left')
+        self.start_entry.pack(side='left')
+        self.endLabel.pack(side='left')
+        self.end_entry.pack(side='left')
 
-        #Buttons
-        self.enact_button = tkinter.Button(self.bottom_frame, text = "Process Payroll", command = self.processChoice)
-        self.quit_button = tkinter.Button(self.bottom_frame, text = "Quit", command = self.main_window.destroy)
+        self.enact_button = tkinter.Button(self.bottom_frame, text="Process Payroll", command=self.processChoice)
+        self.quit_button = tkinter.Button(self.bottom_frame, text="Quit", command=self.main_window.destroy)
 
-        #Pack Buttons
-        self.enact_button.pack(side = 'left')
-        self.quit_button.pack(side = 'left')
+        self.enact_button.pack(side='left')
+        self.quit_button.pack(side='left')
 
-        #Frame Packing
         self.top_frame.pack()
         self.middle_frame.pack()
         self.bottom_frame.pack()
 
-        #Start Main Loop
         tkinter.mainloop()
 
     def processChoice(self):
@@ -95,11 +84,10 @@ class ProcessPayroll:
         else:
             starter = self.start_entry.get().split('/')
             ender = self.end_entry.get().split('/')
-            for x in range (2):
+            for x in range(2):
                 starter[x] = int(starter[x])
                 ender[x] = int(ender[x])
-            payer = MakePayment(starter, ender)
-            s = payer.pay()
+            s = payer.dictionaryMaker(starter, ender)
             tkinter.messagebox.showinfo('Payroll Processed', s)
 
     def errorMessage(self):

@@ -21,6 +21,9 @@ class HourlyEmployee(Employee):
             if x.getDate() == date:
                 x.setEnd(time)
 
+    def getList(self):
+        return self.__timeCards
+
     def pay(self, startDate, endDate):
         val = 0
         for x in self.__timeCards:

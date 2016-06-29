@@ -15,6 +15,9 @@ class SalariedEmployee(Employee):
     def makeSale(self, date, amount):
         self.__receiptList.append(Receipt(date, amount))
 
+    def getList(self):
+        return self.__receiptList
+
     def pay(self, startDate, endDate):
         startDate = startDate.split('/')
         endDate = endDate.split('/')
