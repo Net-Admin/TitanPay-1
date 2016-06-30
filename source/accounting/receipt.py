@@ -7,3 +7,6 @@ class Receipt:
 
     def getAmount(self):
         return self.__sale_amount
+
+    def getDate(self):
+        return self.__date

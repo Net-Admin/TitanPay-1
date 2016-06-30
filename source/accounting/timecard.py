@@ -3,7 +3,7 @@
 #calculate daily pay returns the time * rate * 1.5 only if over 8 hours worked
 class TimeCard:
     def __init__(self, date, start_time, end_time):
-        self.__date = date.split('/')
+        self.__date = date
         self.__start_time = start_time
         self.__end_time = end_time
 

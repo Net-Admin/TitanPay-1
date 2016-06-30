@@ -1,6 +1,6 @@
 from source.accounting.address import Address
 class PaymentMethod:
-    def __init__(self, value, first_name, last_name, homeAddress):
+    def __init__(self, value, last_name, first_name, homeAddress):
         self.__value = value
         self.__first_name = first_name
         self.__last_name = last_name
@@ -20,3 +20,7 @@ class PaymentMethod:
 
     def pay(self, value):
         value.pay(value)
+
+    def notpaid(self):
+        s = self.__first_name + " " + self.__last_name + " is not paid this week."
+        return s

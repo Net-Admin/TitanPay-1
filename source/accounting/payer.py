@@ -9,10 +9,10 @@ def makeHourlyEmployees():
     while line != "":
         employ = line.split(',')
         if '-' in employ[4]:
-            emp = HourlyEmployee(int(employ[0]), employ[1].rstrip(' '), employ[2].rstrip(' '), float(employ[3]),
+            emp = HourlyEmployee(int(employ[0]), employ[2].rstrip(' '), employ[1].rstrip(' '), float(employ[3]),
                                  0, employ[5].rstrip(' '))
         else:
-            emp = HourlyEmployee(int(employ[0]), employ[1].rstrip(' '), employ[2].rstrip(' '), float(employ[3]),
+            emp = HourlyEmployee(int(employ[0]), employ[2].rstrip(' '), employ[1].rstrip(' '), float(employ[3]),
                                  float(employ[4]), employ[5].rstrip(' '))
 
         employees.append(emp)
@@ -28,10 +28,10 @@ def makeSalariedEmployees():
     while line != "":
         employ = line.split(',')
         if '-' in employ[5]:
-            emp = SalariedEmployee(int(employ[0]), employ[1].rstrip(' '), employ[2].rstrip(' '), float(employ[3]),
+            emp = SalariedEmployee(int(employ[0]), employ[2].rstrip(' '), employ[1].rstrip(' '), float(employ[3]),
                                    float(employ[4]), 0, employ[6].rstrip(' '))
         else:
-            emp = SalariedEmployee(int(employ[0]), employ[1].rstrip(' '), employ[2].rstrip(' '), float(employ[3]),
+            emp = SalariedEmployee(int(employ[0]), employ[2].rstrip(' '), employ[1].rstrip(' '), float(employ[3]),
                                    float(employ[4]), float(employ[5]), employ[6].rstrip(' '))
         line = salariedFile.readline()
         employees.append(emp)
@@ -46,9 +46,9 @@ def giveTimes():
     while line != '':
         piece = line.split(',')
         for x in hEmployees:
-            if piece[0] == x.getID():
-                x.clockin(piece[3], int(piece[1]))
-                x.clockout(piece[3], int(piece[2]))
+            if int(piece[0]) == x.getID():
+                x.clockIn(piece[3], int(piece[1]))
+                x.clockOut(piece[3], int(piece[2]))
         line = timeCardsFile.readline()
     timeCardsFile.close()
     return hEmployees
@@ -61,8 +61,8 @@ def makeReceipts():
     while line != '':
         piece = line.split(',')
         for x in sEmployees:
-            if piece[0] == x.getID():
-                x.makeSale('6/21/2016', float(piece[5]))
+            if int(piece[0]) == x.getID():
+                x.makeSale('6/21/2016', float(piece[5].strip()))
         line = receiptsFile.readline()
     return sEmployees
 

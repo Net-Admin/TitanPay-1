@@ -29,4 +29,4 @@ class SalariedEmployee(Employee):
         if payment > 0:
             return method.pay(payment)
         else:
-            return ''
+            return method.notpaid()

@@ -39,7 +39,6 @@ class Menu:
 
         tkinter.mainloop()
 
-
     def picker(self):
         if self.radio_var.get() == 6:
             payroll = ProcessPayroll()
