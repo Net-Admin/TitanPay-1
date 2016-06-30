@@ -13,7 +13,8 @@ class HourlyEmployee(Employee):
         self.__timeCards = []
 
     def clockIn(self, date, time):
-        newCard = TimeCard(date, time, 0)
+        newDate = date.split('/')
+        newCard = TimeCard(newDate, time, 0)
         self.__timeCards.append(newCard)
 
     def clockOut(self, date, time):
@@ -27,8 +28,13 @@ class HourlyEmployee(Employee):
     def pay(self, startDate, endDate):
         val = 0
         for x in self.__timeCards:
-            if (x.getDate()[0] >= startDate[0] and x.getDate()[1] >= startDate[1] and x.getDate()[2] >= startDate[2]) and (x.getDate()[0] <= endDate[0] and x.getDate()[1] <= endDate[1] and x.getDate()[2] <= endDate[2]):
-                val += x.calculate_daily_pay(self.__hourly_rate)
+            if endDate[0] >= x.getDate()[0] >= startDate[0]:
+                if endDate[1] >= x.getDate()[1] >= startDate[0]:
+                    if endDate[2] >= x.getDate()[2] >= startDate[2]:
+                        val += x.getAmount()
         method = self.setMethod()
         val = val - self.getDues()
-        method.pay(val)
+        if val > 0:
+            return method.pay(val)
+        else:
+            return ''

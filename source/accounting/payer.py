@@ -8,12 +8,12 @@ def makeHourlyEmployees():
     line = hourlyFile.readline()
     while line != "":
         employ = line.split(',')
-        if employ[4].strip() == '-':
-            emp = HourlyEmployee(int(employ[0]), employ[1].strip(), employ[2].strip(), float(employ[3]),
-                                 0, employ[5].strip())
+        if '-' in employ[4]:
+            emp = HourlyEmployee(int(employ[0]), employ[1].rstrip(' '), employ[2].rstrip(' '), float(employ[3]),
+                                 0, employ[5].rstrip(' '))
         else:
-            emp = HourlyEmployee(int(employ[0]), employ[1].strip(), employ[2].strip(), float(employ[3]),
-                                 float(employ[4]), employ[5].strip())
+            emp = HourlyEmployee(int(employ[0]), employ[1].rstrip(' '), employ[2].rstrip(' '), float(employ[3]),
+                                 float(employ[4]), employ[5].rstrip(' '))
 
         employees.append(emp)
         line = hourlyFile.readline()
@@ -27,12 +27,12 @@ def makeSalariedEmployees():
     employees = []
     while line != "":
         employ = line.split(',')
-        if employ[5].strip() == '-':
-            emp = SalariedEmployee(int(employ[0]), employ[1].strip(), employ[2].strip(), float(employ[3]),
-                                   float(employ[4]), 0, employ[6].strip())
+        if '-' in employ[5]:
+            emp = SalariedEmployee(int(employ[0]), employ[1].rstrip(' '), employ[2].rstrip(' '), float(employ[3]),
+                                   float(employ[4]), 0, employ[6].rstrip(' '))
         else:
-            emp = SalariedEmployee(int(employ[0]), employ[1].strip(), employ[2].strip(), float(employ[3]),
-                                   float(employ[4]), float(employ[5]), employ[6].strip())
+            emp = SalariedEmployee(int(employ[0]), employ[1].rstrip(' '), employ[2].rstrip(' '), float(employ[3]),
+                                   float(employ[4]), float(employ[5]), employ[6].rstrip(' '))
         line = salariedFile.readline()
         employees.append(emp)
     salariedFile.close()
@@ -72,11 +72,19 @@ def dictionaryMaker(start_date, end_date):
     dic = {}
     s = ''
     for x in hEmployees:
-        if len(x.getList()) > 0:
+        try:
             dic[x] = x.pay(start_date, end_date)
+        except ValueError:
+            "Do Nothing"
+
     for x in sEmployees:
-        if len(x.getList()) > 0:
+        try:
             dic[x] = x.pay(start_date, end_date)
+        except ValueError:
+            "Do Nothing"
     for person in dic:
-        s += dic[person] + "\n"
+        try:
+            s += dic[person] + "\n"
+        except TypeError:
+            "Do Nothing"
     return s
