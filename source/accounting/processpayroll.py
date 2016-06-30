@@ -52,4 +52,3 @@ class ProcessPayroll:
     def errorMessage(self):
         tkinter.messagebox.showinfo('Error', 'Check your date inputs. There is an error.')
 
-processpayroll = ProcessPayroll()
