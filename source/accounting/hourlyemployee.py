@@ -31,7 +31,7 @@ class HourlyEmployee(Employee):
             if int(endDate[0]) >= int(x.getDate()[0]) >= int(startDate[0]):
                 if int(endDate[1]) >= int(x.getDate()[1]) >= int(startDate[1]):
                     if int(endDate[2]) >= int(x.getDate()[2]) >= int(startDate[2]):
-                        val += x.getAmount()
+                        val += x.calculate_daily_pay(self.__hourly_rate)
         method = self.setMethod()
         val = val - self.getDues()
         if val > 0:

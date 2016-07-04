@@ -1,6 +1,7 @@
 from source.accounting.processpayroll import ProcessPayroll
 import tkinter
 import tkinter.messagebox
+from source.accounting.employeedatabase import EmpBase
 
 class Menu:
     def __init__(self):
@@ -43,7 +44,12 @@ class Menu:
 
     def picker(self):
         if self.radio_var.get() == 0:
-            pass
+            base = EmpBase()
+            base.import_h_emp()
+            base.import_s_emp()
+            base.import_receipt()
+            base.import_time_cards()
+            tkinter.messagebox.showinfo('Done', 'Process Complete.')
         elif self.radio_var.get() == 6:
             payroll = ProcessPayroll()
 
