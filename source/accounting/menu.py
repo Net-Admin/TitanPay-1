@@ -12,9 +12,10 @@ class Menu:
 
         # Make IntVar
         self.radio_var = tkinter.IntVar()
-        self.radio_var.set(1)
+        self.radio_var.set(0)
 
         # Objects
+        self.rb0 = tkinter.Radiobutton(self.top_frame, text='Import Employees', variable=self.radio_var, value=0)
         self.rb1 = tkinter.Radiobutton(self.top_frame, text='Create Employee', variable=self.radio_var, value=1)
         self.rb2 = tkinter.Radiobutton(self.top_frame, text='View Time Cards', variable=self.radio_var, value=2)
         self.rb3 = tkinter.Radiobutton(self.top_frame, text='View Pay Rate or Salary', variable=self.radio_var, value=3)
@@ -23,6 +24,7 @@ class Menu:
         self.rb6 = tkinter.Radiobutton(self.top_frame, text='Process Payroll', variable=self.radio_var, value=6)
 
         # Pack Buttons
+        self.rb0.pack()
         self.rb1.pack()
         self.rb2.pack()
         self.rb3.pack()
@@ -40,7 +42,9 @@ class Menu:
         tkinter.mainloop()
 
     def picker(self):
-        if self.radio_var.get() == 6:
+        if self.radio_var.get() == 0:
+            pass
+        elif self.radio_var.get() == 6:
             payroll = ProcessPayroll()
 
 menu = Menu()
