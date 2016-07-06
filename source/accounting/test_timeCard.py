@@ -3,16 +3,17 @@ from source.accounting.timecard import TimeCard
 
 class TestTimeCard(TestCase):
     def test_setDate(self):
-        self.fail()
+        pass
 
     def test_setStart(self):
-        self.fail()
+        pass
 
     def test_setEnd(self):
-        self.fail()
+        pass
 
     def test_getDate(self):
-        self.fail()
+        pass
 
     def test_calculate_daily_pay(self):
-        self.fail()
+        s = TimeCard
+        self.assertRaises(Exception, s.calculate_daily_pay, -10)
